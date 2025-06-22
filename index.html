@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tornearia USINORT</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom right, #2b0f43, #12042c);
+      color: white;
+    }
+
+    .topo {
+      background-image: url('fundo-usinort.png');
+      background-size: cover;
+      background-position: center;
+      text-align: center;
+      padding: 100px 20px;
+    }
+
+    .topo h1 {
+      font-size: 48px;
+      color: white;
+      text-shadow: 2px 2px 5px black;
+      text-transform: uppercase;
+    }
+
+    header {
+      background-color: #e50914;
+      padding: 20px;
+      text-align: center;
+    }
+
+    input[type="text"] {
+      width: 80%;
+      padding: 10px;
+      font-size: 16px;
+      margin-top: 10px;
+      border-radius: 5px;
+      border: none;
+    }
+
+    main {
+      padding: 20px;
+    }
+
+    .servico {
+      background-color: #c084f5;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    .logo-redes img {
+      width: 32px;
+      height: 32px;
+      margin-right: 10px;
+    }
+
+    iframe {
+      width: 100%;
+      max-width: 600px;
+      height: 350px;
+      border: 0;
+      border-radius: 10px;
+      margin-top: 10px;
+    }
+
+    .shorts iframe {
+      width: 315px;
+      height: 560px;
+    }
+
+    .comentarios {
+      margin-top: 10px;
+      background-color: #fff2;
+      padding: 10px;
+      border-radius: 5px;
+      color: white;
+    }
+
+    textarea {
+      width: 100%;
+      padding: 8px;
+      border-radius: 5px;
+      margin-top: 5px;
+    }
+
+    button {
+      margin-top: 5px;
+      padding: 6px 10px;
+      background: #3d0b56;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .comentario-box {
+      background-color: #00000066;
+      padding: 6px;
+      margin: 5px 0;
+      border-radius: 5px;
+      position: relative;
+    }
+
+    .comentario-box button {
+      position: absolute;
+      right: 10px;
+      top: 5px;
+      padding: 2px 5px;
+      font-size: 10px;
+      background: red;
+      border: none;
+      border-radius: 3px;
+      color: white;
+      cursor: pointer;
+    }
+
+    .estrelas span {
+      font-size: 24px;
+      cursor: pointer;
+      color: yellow;
+    }
+
+    .curtida span {
+      font-size: 20px;
+      cursor: pointer;
+      color: #ff6b81;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="topo">
+    <h1>TORNEARIA USINORT</h1>
+  </div>
+
+  <header>
+    <input type="text" id="searchInput" placeholder="Buscar serviços ou cidade..." oninput="pesquisar()">
+  </header>
+
+  <main id="listaServicos"></main>
+
+  <!-- Shorts Section com vídeos atualizados -->
+  <section class="shorts">
+    <div class="servico">
+      <h2>Vídeo 1: Shorts - USINORT</h2>
+      <iframe src="https://www.youtube.com/embed/EPApAj1HCvw"
+        title="Shorts USINORT 1"
+        frameborder="0"
+        allow="autoplay; clipboard-write; encrypted-media; picture-in-picture"
+        allowfullscreen></iframe>
+      <div class="curtida">
+        <span onclick="curtirVideo(0)">❤️ Curtir (<span id="curtidas0">0</span>)</span>
+      </div>
+      <div class="comentarios">
+        <strong>Comentários:</strong>
+        <div id="comentarios0"></div>
+        <textarea id="comentario0" rows="2" placeholder="Comente aqui..."></textarea>
+        <button onclick="adicionarComentario(0)">Enviar</button>
+      </div>
+    </div>
+
+    <div class="servico">
+      <h2>Vídeo 2: Shorts - USINORT</h2>
+      <iframe src="https://www.youtube.com/embed/ZIBQCyCdekI"
+        title="Shorts USINORT 2"
+        frameborder="0"
+        allow="autoplay; clipboard-write; encrypted-media; picture-in-picture"
+        allowfullscreen></iframe>
+      <div class="curtida">
+        <span onclick="curtirVideo(1)">❤️ Curtir (<span id="curtidas1">0</span>)</span>
+      </div>
+      <div class="comentarios">
+        <strong>Comentários:</strong>
+        <div id="comentarios1"></div>
+        <textarea id="comentario1" rows="2" placeholder="Comente aqui..."></textarea>
+        <button onclick="adicionarComentario(1)">Enviar</button>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const servicos = [
+      {
+        nome: "Tornearia USINORT",
+        tipo: "Tornearia Mecânica",
+        cidade: "Rolândia",
+        telefone: "(43) 9999-9999",
+        descricao: `
+          Na <strong>USINORT</strong>, oferecemos usinagem, tornearia e soluções industriais com qualidade e agilidade que fazem a diferença!<br><br>
+          ⚙️ Serviços que oferecemos:<br>
+          ✅ Tornearia Mecânica<br>
+          ✅ Usinagem Industrial<br>
+          ✅ Manutenção de Peças<br><br>
+          📍 Rolândia - PR<br>
+          🚀 Qualidade, confiança e entrega rápida!<br>
+          📩 Chame no direct ou envie seu projeto!<br><br>
+          #Usinort #Tornearia #Usinagem #MecânicaIndustrial #RolândiaPR #Engrenagens #IndústriaParanaense #SoluçõesIndustriais #ManutençãoIndustrial #ShortsIndustriais #Empreendedorismo
+        `,
+        mapa: "https://www.google.com/maps/embed?pb=!4v1750540011149!6m8!1m7!1sVWdcpvCsQgrVODxAoOuBQg!2m2!1d-23.30089052361652!2d-51.39200270530922!3f318.1762609917756!4f-11.387370212053455!5f0.7820865974627469",
+        instagram: "https://www.instagram.com/usinort_rolandia/",
+        youtube: "https://www.youtube.com/channel/UCAQajLBB2PyiRwWD6CJ2sBQ",
+        comentarios: [],
+        nota: 0,
+        totalVotos: 0
+      }
+    ];
+
+    function exibirServicos(lista) {
+      const container = document.getElementById("listaServicos");
+      container.innerHTML = "";
+
+      lista.forEach((s, index) => {
+        const media = s.totalVotos ? (s.nota / s.totalVotos).toFixed(1) : "0";
+        const div = document.createElement("div");
+        div.className = "servico";
+        div.innerHTML = `
+          <h2>${s.nome}</h2>
+          <p><strong>Tipo:</strong> ${s.tipo}</p>
+          <p><strong>Cidade:</strong> ${s.cidade}</p>
+          <p><strong>Telefone:</strong> ${s.telefone}</p>
+          <p>${s.descricao}</p>
+          <div class="logo-redes">
+            <a href="${s.instagram}" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram"></a>
+            <a href="${s.youtube}" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube"></a>
+          </div>
+          <iframe src="${s.mapa}" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <div class="avaliacao">
+            ⭐ Avaliação média: ${media} (${s.totalVotos} votos)<br>
+            ${[1,2,3,4,5].map(n => `<span onclick="avaliar(${index}, ${n})">★</span>`).join('')}
+          </div>
+          <div class="comentarios">
+            <strong>Comentários:</strong>
+            ${s.comentarios.map((c, i) => `
+              <div class="comentario-box">
+                🗨️ ${c}
+                <button onclick="removerComentario(${index}, ${i})">X</button>
+              </div>
+            `).join("")}
+            <textarea id="coment-${index}" rows="2" placeholder="Escreva um comentário..."></textarea>
+            <button onclick="comentar(${index})">Enviar</button>
+          </div>
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    function pesquisar() {
+      const termo = document.getElementById("searchInput").value.toLowerCase();
+      const filtrados = servicos.filter(s =>
+        s.nome.toLowerCase().includes(termo) ||
+        s.tipo.toLowerCase().includes(termo) ||
+        s.cidade.toLowerCase().includes(termo)
+      );
+      exibirServicos(filtrados);
+    }
+
+    function comentar(index) {
+      const textarea = document.getElementById(`coment-${index}`);
+      const texto = textarea.value.trim();
+      if (texto) {
+        servicos[index].comentarios.push(texto);
+        textarea.value = "";
+        exibirServicos(servicos);
+      }
+    }
+
+    function removerComentario(servIndex, comentIndex) {
+      servicos[servIndex].comentarios.splice(comentIndex, 1);
+      exibirServicos(servicos);
+    }
+
+    function avaliar(index, estrelas) {
+      servicos[index].nota += estrelas;
+      servicos[index].totalVotos += 1;
+      exibirServicos(servicos);
+    }
+
+    // Shorts interações
+    let curtidas = [0, 0];
+    let comentariosShorts = [[], []];
+
+    function curtirVideo(index) {
+      curtidas[index]++;
+      document.getElementById(`curtidas${index}`).innerText = curtidas[index];
+    }
+
+    function adicionarComentario(index) {
+      const texto = document.getElementById(`comentario${index}`).value.trim();
+      if (texto) {
+        comentariosShorts[index].push(texto);
+        renderizarComentarios(index);
+        document.getElementById(`comentario${index}`).value = "";
+      }
+    }
+
+    function removerComentario(index, comentIndex) {
+      comentariosShorts[index].splice(comentIndex, 1);
+      renderizarComentarios(index);
+    }
+
+    function renderizarComentarios(index) {
+      const div = document.getElementById(`comentarios${index}`);
+      div.innerHTML = comentariosShorts[index].map((c, i) => `
+        <div class="comentario-box">
+          🗨️ ${c}
+          <button onclick="removerComentario(${index}, ${i})">X</button>
+        </div>
+      `).join("");
+    }
+
+    exibirServicos(servicos);
+  </script>
+</body>
+</html>
